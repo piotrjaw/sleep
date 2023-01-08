@@ -8,7 +8,7 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: process.env.GOOGLE_CALLBACK,
+      callbackURL: `http://localhost:${process.env.PORT || 5000}/auth/google/callback`,
     },
     async (_, __, profile, done) => {
       const account = profile._json;

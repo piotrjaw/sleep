@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -38,17 +39,16 @@ app.use(passport.session());
 
 app.use(express.json());
 
-app.use(express.static("../client/build"));
-app.use("/static", express.static("../client/build"));
+app.use("/static", express.static(path.join(__dirname, "client/build/static")));
 
 app.use("/api", indexRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/sleeps", sleepsRouter);
 app.use("/api/auth", authRouter);
 
-// app.get("/", (req, res) => {
-//   res.send("hello earthling!");
-// });
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 app.listen(PORT, () => {
   console.log("server has started");
