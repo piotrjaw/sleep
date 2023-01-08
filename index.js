@@ -4,6 +4,8 @@ const cors = require("cors");
 const session = require("express-session");
 const passport = require("passport");
 
+const PORT = process.env.PORT || 5000;
+
 const usersRouter = require("./routers/usersRouter");
 const authRouter = require("./routers/authRouter");
 const indexRouter = require("./routers/indexRouter");
@@ -48,6 +50,6 @@ app.use("/api/auth", authRouter);
 //   res.send("hello earthling!");
 // });
 
-app.listen(5000, () => {
+app.listen(PORT, () => {
   console.log("server has started");
 });
